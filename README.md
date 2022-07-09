@@ -18,19 +18,19 @@ La solución que se le puede brindar al cliente es desarrollar los siguiente sub
     -	Iniciar sesión.
     -	Seleccionar productos
     -	Ver listado de productos seleccionados.
-    -	Autorizar la compra de los productos seleccionados
+    -	Autorizar la compra de los productos seleccionados.
 
 **Para la Administración:**
 
-        -	Cargar productos a la aplicación
-        -	Modificar los datos de los productos cargados
-        -	Ver todos los usuarios que realizaron una compra
-        -	Ver listado de productos seleccionados por el usuario
+        -	Cargar productos a la aplicación.
+        -	Modificar los datos de los productos cargados.
+        -	Ver todos los usuarios que realizaron una compra.
+        -	Ver listado de productos seleccionados por el usuario.
 
 **Consideraciones**
 
         -	Controlar el stock de productos.
-        -	No se puede seleccionar un producto con stock 0
+        -	No se puede seleccionar un producto con stock 0.
         -	Los usuarios pueden seleccionar hasta 30 artículos.
 
 # ENTREGABLES
