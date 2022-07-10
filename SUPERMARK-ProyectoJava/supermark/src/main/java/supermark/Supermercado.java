@@ -7,9 +7,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Supermercado {
     
+	Scanner leer = new Scanner(System.in);
+	
     private static final String URL_BD = "jdbc:mysql://localhost:3306/supermark";
     private static final String USER = "root";
     private static final String PASS = "41122022";
@@ -86,6 +89,25 @@ public class Supermercado {
         stm.close();
     }
 
+    //MODIFICA UN PRODUCTO EN LA BASE DE DATOS
+    public void modificarProducto(int idProducto) throws SQLException {	
+		
+    	int stock = 0; 
+		int respuesta;
+		
+		Statement stm = this.getStatement();
+		
+		System.out.print("Desea modificar el stock? 1-SI 0-NO: ");
+		respuesta = leer.nextInt();
+		if(respuesta == 1) {
+			System.out.print("Ingrese nuevo stock: ");
+			stock = leer.nextInt();
+			stm.executeUpdate("UPDATE Producto SET cantStock = "+ stock +" WHERE (idProducto = " + idProducto + ");");
+		}
+
+	}
+
+    
     public Boolean isAdmin(Usuario usuario) {
         Statement stm = getStatement();
 

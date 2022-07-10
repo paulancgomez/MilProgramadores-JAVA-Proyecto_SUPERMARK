@@ -79,7 +79,8 @@ public class Producto {
 
     //METODOS DE LA CLASE
   	public void muestraProducto() {
-  		System.out.println("PRODUCTO " + id);
+  		System.out.println("PRODUCTO");
+  		System.out.println("Id: " + id);
   		System.out.println("Descripcion: " + descripcion);
   		System.out.println("Marca: " + marca);
   		System.out.println("Stock: " + cantStock);

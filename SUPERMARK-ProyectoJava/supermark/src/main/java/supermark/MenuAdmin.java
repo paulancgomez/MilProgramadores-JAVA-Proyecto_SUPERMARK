@@ -28,6 +28,7 @@ public class MenuAdmin {
 		System.out.println("3. MODIFICAR LOS DATOS DE LOS PRODUCTOS CARGADOS");
 		System.out.println("4. VER TODOS LOS USUARIOS QUE REALIZARON UNA COMPRA");
 		System.out.println("5. VER LISTADO DE PRODUCTOS SELECCIONADOS POR EL USUARIO");
+		System.out.print("Elija: ");
 		
 		int opcion = leer.nextInt();
 		switch(opcion) {
@@ -39,7 +40,7 @@ public class MenuAdmin {
 			cargarProductoAdmin();
 			break;
 		case 3:
-			//ModificarProducto();
+			modificarProductoAdmin();
 			break;
 		case 4:
 			//VerUsuariosCompras();
@@ -49,6 +50,7 @@ public class MenuAdmin {
 	}
 	
 	public void verProductosAdmin() {
+		
 		List<Producto> listaProducto = new ArrayList<Producto>();
     	listaProducto = this.supermark.getProductos();
     	
@@ -78,6 +80,20 @@ public class MenuAdmin {
 		this.supermark.guardarNuevoProducto(nuevoProducto);
 		
 		System.out.println("PRODUCTO AGREGADO CON EXITO!");
+	}
+    
+    
+    public void modificarProductoAdmin() throws SQLException {	
+		
+		verProductosAdmin();
+		
+		System.out.println("\tESTA POR MODIFICAR UN PRODUCTO");
+		System.out.print("Ingrese el Id del producto a modificar: ");
+		int idProducto = leer.nextInt();
+		
+		this.supermark.modificarProducto(idProducto);
+		
+		System.out.println("PRODUCTO ACTUALIZADO!");
 	}
 	
 }
