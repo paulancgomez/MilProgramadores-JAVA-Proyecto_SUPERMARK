@@ -34,12 +34,18 @@ public class MenuCliente {
 		int opcion = leer.nextInt();
 		
 		switch(opcion) {
+			
 			case 1:
 				//this.seleccionarProductos();
 				break;
+			
 			case 2:
-				this.verCarrito();
+				System.out.println("\nSU CARRITO:");
+				Carrito carrito = new Carrito();
+				carrito = supermark.getCarrito(cliente.getIdCliente());
+				carrito.muestraCarrito();
 				break;
+			
 			case 3:
 				//this.autorizarCompraCarrito();
 				break;
@@ -91,15 +97,6 @@ public class MenuCliente {
 			//}
 			
 		}while(cantidadProdCarrito <= 30 && control == 1);
-	}
-	
-	//VER CARRITO
-	public void verCarrito() {
-		
-		System.out.println("\nSU CARRITO:");
-		Carrito carrito = new Carrito();
-		carrito = supermark.getCarrito(cliente.getIdCliente());
-		carrito.muestraCarrito();
 	}
 
 
