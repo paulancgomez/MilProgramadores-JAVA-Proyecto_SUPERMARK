@@ -3,7 +3,7 @@ package supermark;
 public class Producto {
 
 	//ATRIBUTOS
-    private Long id;
+    private int id;
     private String descripcion; 
     private String marca;
     private int cantStock;
@@ -11,8 +11,16 @@ public class Producto {
     private String categoria;
 
     //CONSTRUCTOR
-    public Producto(Long id, String descripcion, String marca, int cantStock, Double precio, String categoria) {
+    public Producto(int id, String descripcion, String marca, int cantStock, Double precio, String categoria) {
         this.id = id;
+        this.descripcion = descripcion;
+        this.marca = marca;
+        this.cantStock = cantStock;
+        this.precio = precio;
+        this.categoria = categoria;
+    }
+    
+    public Producto(String descripcion, String marca, int cantStock, Double precio, String categoria) {
         this.descripcion = descripcion;
         this.marca = marca;
         this.cantStock = cantStock;
@@ -21,11 +29,11 @@ public class Producto {
     }
 
     //METODOS GET Y SET
-    public Long getId() {
+    public int getId() {
         return this.id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -69,5 +77,14 @@ public class Producto {
         this.categoria = categoria;
     }
 
+    //METODOS DE LA CLASE
+  	public void muestraProducto() {
+  		System.out.println("PRODUCTO " + id);
+  		System.out.println("Descripcion: " + descripcion);
+  		System.out.println("Marca: " + marca);
+  		System.out.println("Stock: " + cantStock);
+  		System.out.println("Precio: " + precio);
+  		System.out.println("Categoria " + categoria);
+  	}
 
 }
