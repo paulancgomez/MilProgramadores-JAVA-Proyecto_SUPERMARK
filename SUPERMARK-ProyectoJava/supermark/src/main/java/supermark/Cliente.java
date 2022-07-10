@@ -19,6 +19,11 @@ public class Cliente extends Usuario {
     public Cliente(int idUsuario, String nombre, String apellido, String email) {
         super(idUsuario, nombre, apellido, email);
     }
+    
+    public Cliente(int idUsuario, int idCliente, String nombre, String apellido, String email) {
+        super(idUsuario, nombre, apellido, email);
+        this.idCliente = idCliente;
+    }
 
     public Cliente(int id, String nombre, String apellido, String correo, Domicilio idDomicilio) {
 		super(id, nombre, apellido, correo);

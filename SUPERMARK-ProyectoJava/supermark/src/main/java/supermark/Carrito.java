@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Carrito {
 	
 	//ATRIBUTOS
-	private int id;
 	private ArrayList<Producto> listaProductos;
 	
 	//CONSTRUCTORES
@@ -14,5 +13,17 @@ public class Carrito {
 	}
 	
 	//METODOS DE LA CLASE
+	public void agregaProducto(Producto producto) {
+		this.listaProductos.add(producto);
+	}
+	
+	public void muestraCarrito() {
+		
+		for (int i = 0; i < this.listaProductos.size() ; i++) {		
+			listaProductos.get(i).muestraProducto();
+			System.out.println();
+		}
+		
+	}
 
 }

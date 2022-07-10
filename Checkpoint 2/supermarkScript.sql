@@ -32,7 +32,7 @@ CREATE TABLE Cliente (
 	idCliente INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	idUsuario INT NOT NULL,
     idDomicilio INT NOT NULL,
-	descuentoPorcentaje DOUBLE NOT NULL,
+	descuentoPorcentaje INT DEFAULT 10, -- Descuento del 10% para todos los clientes
 	FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario),
     FOREIGN KEY (idDomicilio) REFERENCES Domicilio(idDomicilio)
 );

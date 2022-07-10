@@ -53,6 +53,8 @@ public class Supermercado {
 	}
 
 	//METODOS DE LA CLASE
+	
+	//CONEXION
 	private Statement getStatement(){
         try{
             Connection conn = DriverManager.getConnection(URL_BD, USER, PASS);
@@ -81,6 +83,18 @@ public class Supermercado {
         }
         return listaProducto;
     }
+    
+    //MUESTRA LISTA DE PRODUCTOS
+	public void verProductos() {
+		
+		List<Producto> listaProducto = new ArrayList<Producto>();
+    	listaProducto = this.getProductos();
+    	
+    	for(int i = 0; i < listaProducto.size(); i++){
+    		listaProducto.get(i).muestraProducto();
+    		System.out.println();
+    	}
+	}
 
     //CARGA UN PRODUCTO EN LA BASE DE DATOS
     public void guardarNuevoProducto(Producto nuevoProducto) throws SQLException{
@@ -115,6 +129,26 @@ public class Supermercado {
 
 	}
 
+    //DEVUELVE CARRITO
+    public Carrito getCarrito(int idCliente){
+        Carrito carrito = new Carrito();
+        Statement stm = this.getStatement();
+        try{
+        	String sql = "SELECT * FROM Producto WHERE idProducto IN (SELECT idProducto FROM CarritoxProducto WHERE idCarrito = (SELECT idCarrito FROM Carrito WHERE idCliente = " + idCliente + "));";
+            ResultSet rs = stm.executeQuery(sql);
+            while(rs.next()){
+                Producto unProducto = new Producto(rs.getInt("idProducto"), rs.getString("descripcion"), rs.getString("marca"), rs.getInt("cantStock"), rs.getDouble("precio"), rs.getString("categoria"));
+                carrito.agregaProducto(unProducto);
+            }
+            stm.close();
+            return carrito;
+        }catch(SQLException e){
+            System.out.println(e.getLocalizedMessage());
+        }
+        return carrito;
+    }
+    
+    
     
     public Boolean isAdmin(Usuario usuario) {
         Statement stm = getStatement();

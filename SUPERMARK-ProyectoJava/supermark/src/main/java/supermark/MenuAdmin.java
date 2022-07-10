@@ -1,8 +1,6 @@
 package supermark;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class MenuAdmin {
@@ -28,7 +26,7 @@ public class MenuAdmin {
 		switch(opcion) {
 		
 			case 1:
-				verProductosAdmin();
+				supermark.verProductos();
 				break;
 			case 2:
 				cargarProductoAdmin();
@@ -44,17 +42,6 @@ public class MenuAdmin {
 				break;
 		}
 	
-	}
-	
-	public void verProductosAdmin() {
-		
-		List<Producto> listaProducto = new ArrayList<Producto>();
-    	listaProducto = this.supermark.getProductos();
-    	
-    	for(int i = 0; i < listaProducto.size(); i++){
-    		listaProducto.get(i).muestraProducto();
-    		System.out.println();
-    	}
 	}
 	
     public void cargarProductoAdmin() throws SQLException{
@@ -82,7 +69,7 @@ public class MenuAdmin {
     
     public void modificarProductoAdmin() throws SQLException {	
 		
-		verProductosAdmin();
+		supermark.verProductos();
 		
 		System.out.println("\tESTA POR MODIFICAR UN PRODUCTO");
 		System.out.print("Ingrese el Id del producto a modificar: ");
