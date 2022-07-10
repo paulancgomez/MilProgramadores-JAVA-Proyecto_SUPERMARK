@@ -8,10 +8,12 @@ public class MenuAdmin {
 	Scanner leer = new Scanner(System.in);
 	
 	private Supermercado supermark;
+	private Cliente cliente;
 	
-	public MenuAdmin() throws SQLException{
+	public MenuAdmin(Cliente cliente) throws SQLException{
 	
 		this.supermark = new Supermercado();
+		this.cliente = cliente;
 		
 		System.out.println("\tMENU ADMINISTRADOR");
 		System.out.println("1. VER LISTADO DE PRODUCTOS");
@@ -38,7 +40,10 @@ public class MenuAdmin {
 				//verUsuariosCompras();
 				break;
 			case 5:
-				//verCarrito()
+				Carrito carrito = new Carrito();
+				carrito = supermark.getCarrito(cliente.getIdCliente());
+				System.out.println("CARRITO DEL CLIENTE: " + cliente.getNombre() + " " + cliente.getApellido());
+				carrito.muestraCarrito();
 				break;
 		}
 	
