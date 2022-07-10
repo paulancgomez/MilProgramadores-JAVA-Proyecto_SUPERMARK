@@ -217,19 +217,6 @@ public class Supermercado {
 	    }
 	}
 	
-	public void verClientes2() {
-		
-		List<Cliente> listaClientes = new ArrayList<Cliente>();
-    	listaClientes = this.getClientes();
-    	
-    	System.out.println("\tLISTADO DE CLIENTES");
-    	
-    	for(int i = 0; i < listaClientes.size(); i++){
-    		listaClientes.get(i).muestraCliente();
-    		System.out.println();
-    	}
-	}
-	
 	//DEVUELVE LISTA DE COMPRAS
 	public List<Cliente> clienteCompra() {
 		

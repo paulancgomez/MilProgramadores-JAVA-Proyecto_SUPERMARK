@@ -51,7 +51,7 @@ CREATE TABLE Producto (
     marca VARCHAR(30),
 	cantStock INT UNSIGNED,
 	precio DECIMAL(10,2) UNSIGNED NOT NULL,
-    categoria ENUM('GALLETAS','BEBIDAS','CARNES')
+    categoria ENUM('GALLETAS','BEBIDAS','CARNES') -- Por ahora ENUM
 );
 
 -- CREAR TABLA Carrito
@@ -69,4 +69,22 @@ CREATE TABLE CarritoxProducto (
     PRIMARY KEY (idCarrito, idProducto),
     FOREIGN KEY (idCarrito) REFERENCES Carrito(idCarrito),
     FOREIGN KEY (idProducto) REFERENCES Producto(idProducto)
+);
+
+CREATE TABLE Compra(
+	idCompra INT NOT NULL AUTO_INCREMENT,
+    idCarrito INT, 
+    idCliente INT,
+    PRIMARY KEY (idCompra),
+    FOREIGN KEY (idCarrito) REFERENCES Carrito(idCarrito),
+    FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente)
+);
+
+CREATE TABLE Factura(
+	idFactura INT NOT NULL AUTO_INCREMENT, 
+	idCompra INT NOT NULL,
+    total DOUBLE,
+    totalDescuento DOUBLE,
+    PRIMARY KEY (idFactura),
+    FOREIGN KEY (idCompra) REFERENCES Compra(idCompra)
 );
