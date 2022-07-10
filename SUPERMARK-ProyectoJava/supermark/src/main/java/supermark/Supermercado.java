@@ -92,7 +92,7 @@ public class Supermercado {
     //MODIFICA UN PRODUCTO EN LA BASE DE DATOS
     public void modificarProducto(int idProducto) throws SQLException {	
 		
-    	int stock = 0; 
+    	int stock = 0, precio = 0; 
 		int respuesta;
 		
 		Statement stm = this.getStatement();
@@ -103,6 +103,14 @@ public class Supermercado {
 			System.out.print("Ingrese nuevo stock: ");
 			stock = leer.nextInt();
 			stm.executeUpdate("UPDATE Producto SET cantStock = "+ stock +" WHERE (idProducto = " + idProducto + ");");
+		}
+		
+		System.out.print("Desea modificar el precio? 1-SI 0-NO: ");
+		respuesta = leer.nextInt();
+		if(respuesta == 1) {
+			System.out.print("Ingrese nuevo precio: ");
+			precio = leer.nextInt();
+			stm.executeUpdate("UPDATE Producto SET precio = "+ precio +" WHERE (idProducto = " + idProducto + ");");
 		}
 
 	}

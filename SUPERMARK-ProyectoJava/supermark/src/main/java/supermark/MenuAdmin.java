@@ -24,20 +24,24 @@ public class MenuAdmin {
 		System.out.print("Elija: ");
 		
 		int opcion = leer.nextInt();
+		
 		switch(opcion) {
 		
-		case 1:
-			verProductosAdmin();
-			break;
-		case 2:
-			cargarProductoAdmin();
-			break;
-		case 3:
-			modificarProductoAdmin();
-			break;
-		case 4:
-			//VerUsuariosCompras();
-			break;
+			case 1:
+				verProductosAdmin();
+				break;
+			case 2:
+				cargarProductoAdmin();
+				break;
+			case 3:
+				modificarProductoAdmin();
+				break;
+			case 4:
+				//verUsuariosCompras();
+				break;
+			case 5:
+				//verCarrito()
+				break;
 		}
 	
 	}
