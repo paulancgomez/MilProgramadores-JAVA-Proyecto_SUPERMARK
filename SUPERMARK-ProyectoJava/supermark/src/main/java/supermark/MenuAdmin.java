@@ -8,12 +8,10 @@ public class MenuAdmin {
 	Scanner leer = new Scanner(System.in);
 	
 	private Supermercado supermark;
-	private Cliente cliente;
 	
-	public MenuAdmin(Cliente cliente) throws SQLException{
+	public MenuAdmin() throws SQLException{
 	
 		this.supermark = new Supermercado();
-		this.cliente = cliente;
 		
 		System.out.println("\tMENU ADMINISTRADOR");
 		System.out.println("1. VER LISTADO DE PRODUCTOS");
@@ -37,13 +35,10 @@ public class MenuAdmin {
 				modificarProductoAdmin();
 				break;
 			case 4:
-				//verUsuariosCompras();
+				//verUsuariosCompra();
 				break;
 			case 5:
-				Carrito carrito = new Carrito();
-				carrito = supermark.getCarrito(cliente.getIdCliente());
-				System.out.println("CARRITO DEL CLIENTE: " + cliente.getNombre() + " " + cliente.getApellido());
-				carrito.muestraCarrito();
+				verCarrito();
 				break;
 		}
 	
@@ -68,7 +63,7 @@ public class MenuAdmin {
 		nuevoProducto.toString();
 		this.supermark.guardarNuevoProducto(nuevoProducto);
 		
-		System.out.println("PRODUCTO AGREGADO CON EXITO!");
+		System.out.println("PRODUCTO AÑADIDO CON EXITO!");
 	}
     
     
@@ -84,5 +79,20 @@ public class MenuAdmin {
 		
 		System.out.println("PRODUCTO ACTUALIZADO!");
 	}
+    
+    public void verCarrito() {
+    	
+    	Carrito carrito = new Carrito();
+    	
+    	supermark.verClientes();
+		
+    	System.out.print("Ingrese el id del Cliente: ");
+    	int idCliente = leer.nextInt();
+    	
+    	System.out.println("CARRITO del CLIENTE con ID = " + idCliente + ": ");
+    	carrito = supermark.getCarrito(idCliente);
+		carrito.muestraCarrito();
+
+    }
 	
 }

@@ -90,6 +90,8 @@ public class Supermercado {
 		List<Producto> listaProducto = new ArrayList<Producto>();
     	listaProducto = this.getProductos();
     	
+    	System.out.println("\tLISTADO DE PRODUCTOS");
+    	
     	for(int i = 0; i < listaProducto.size(); i++){
     		listaProducto.get(i).muestraProducto();
     		System.out.println();
@@ -148,7 +150,37 @@ public class Supermercado {
         return carrito;
     }
     
+    //DEVUELVE LISTA DE CLIENTES
+    public List<Cliente> getClientes(){
+        List<Cliente> listaClientes = new ArrayList<Cliente>();
+        Statement stm = this.getStatement();
+        try{
+            ResultSet rs = stm.executeQuery("SELECT u.idUsuario, idCliente, nombre, apellido, email FROM Usuario u INNER JOIN Cliente c ON u.idUsuario = c.idUsuario; ");
+            while(rs.next()){
+                Cliente unCliente = new Cliente(rs.getInt("idUsuario"), rs.getString("nombre"), rs.getString("apellido"), rs.getString("email"),  rs.getInt("idCliente"));
+                listaClientes.add(unCliente);
+            }
+            stm.close();
+            return listaClientes;
+        }catch(SQLException e){
+            System.out.println(e.getLocalizedMessage());
+        }
+        return listaClientes;
+    }
     
+    //MUESTRA LISTA DE CLIENTES
+	public void verClientes() {
+		
+		List<Cliente> listaClientes = new ArrayList<Cliente>();
+    	listaClientes = this.getClientes();
+    	
+    	System.out.println("\tLISTADO DE CLIENTES");
+    	
+    	for(int i = 0; i < listaClientes.size(); i++){
+    		listaClientes.get(i).muestraCliente();
+    		System.out.println();
+    	}
+	}
     
     public Boolean isAdmin(Usuario usuario) {
         Statement stm = getStatement();

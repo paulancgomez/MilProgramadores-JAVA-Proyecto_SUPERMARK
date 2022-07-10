@@ -20,7 +20,7 @@ public class Cliente extends Usuario {
         super(idUsuario, nombre, apellido, email);
     }
     
-    public Cliente(int idUsuario, int idCliente, String nombre, String apellido, String email) {
+    public Cliente(int idUsuario, String nombre, String apellido, String email, int idCliente) {
         super(idUsuario, nombre, apellido, email);
         this.idCliente = idCliente;
     }
@@ -73,7 +73,16 @@ public class Cliente extends Usuario {
 		this.listaCompra = listaCompra;
 	}
     
-    //METODOS DE LA CLASE 
+    //METODOS DE LA CLASE
+	public void muestraCliente() {
+		System.out.println("****************************");
+  		System.out.println("\tCLIENTE");
+  		System.out.println("Id: " + idCliente);
+  		System.out.println("Nombre: " + getNombre());
+  		System.out.println("Apellido: " + getApellido());
+  		System.out.println("Email: " + getEmail());
+	}
+	
     public void verCompras(){
         
     }
