@@ -186,8 +186,38 @@ public class Supermercado {
         return listaClientes;
     }
     
-    //MUESTRA LISTA DE CLIENTES
-	public void verClientes() {
+    //DEVUELVE LISTA DE CLIENTES QUE HICIERON AL MENOS UNA COMPRA
+    public List<Cliente> getClientesCompras(){
+        List<Cliente> listaClientes = new ArrayList<Cliente>();
+        Statement stm = this.getStatement();
+        try{
+        	String sql = "SELECT Usuario.idUsuario, Usuario.nombre, Usuario.apellido, Usuario.email, Cliente.idCliente FROM Compra INNER JOIN Cliente ON Compra.idCliente = Cliente.idCliente INNER JOIN Usuario ON Cliente.idUsuario = Usuario.idUsuario GROUP BY Compra.idCliente HAVING COUNT(*) > 0;";
+            ResultSet rs = stm.executeQuery(sql);
+            while(rs.next()){
+                Cliente unCliente = new Cliente(rs.getInt("Usuario.idUsuario"), rs.getString("Usuario.nombre"), rs.getString("Usuario.apellido"), rs.getString("Usuario.email"),  rs.getInt("Cliente.idCliente"));
+                listaClientes.add(unCliente);
+            }
+            stm.close();
+            return listaClientes;
+        }catch(SQLException e){
+            System.out.println(e.getLocalizedMessage());
+        }
+        return listaClientes;
+    }
+    
+	
+	//MUESTRA LISTA DE CLIENTES
+	public void verClientes(List<Cliente> listaClientes) {
+	    	
+	    System.out.println("\tLISTADO DE CLIENTES");
+	    	
+	    for(int i = 0; i < listaClientes.size(); i++){
+	    	listaClientes.get(i).muestraCliente();
+	    	System.out.println();
+	    }
+	}
+	
+	public void verClientes2() {
 		
 		List<Cliente> listaClientes = new ArrayList<Cliente>();
     	listaClientes = this.getClientes();
@@ -201,7 +231,29 @@ public class Supermercado {
 	}
 	
 	//DEVUELVE LISTA DE COMPRAS
-	
+	public List<Cliente> clienteCompra() {
+		
+		 List<Cliente> listaClientes = new ArrayList<Cliente>();
+	     Statement stm = this.getStatement();
+	     int cantCompras = 0;
+	     
+	     try{
+	    	 String sql = "SELECT Usuario.idUsuario, Usuario.nombre, Usuario.apellido, Usuario.email, Cliente.idCliente FROM Compra INNER JOIN Cliente ON Compra.idCliente = Cliente.idCliente INNER JOIN Usuario ON Cliente.idUsuario = Usuario.idUsuario GROUP BY Compra.idCliente HAVING COUNT(*) > 0;";
+	    	 ResultSet rs = stm.executeQuery(sql);
+	     	 
+	    	 while(rs.next()){
+		         Cliente unCliente = new Cliente(rs.getInt("idUsuario"), rs.getString("nombre"), rs.getString("apellido"), rs.getString("email"),  rs.getInt("idCliente"));
+		         listaClientes.add(unCliente);
+	         }
+	     
+	    	 stm.close();
+	     return listaClientes;
+	      
+	     }catch(SQLException e){
+	    	 System.out.println(e.getLocalizedMessage());
+	     }
+	     return listaClientes;
+	}
     
     public Boolean isAdmin(Usuario usuario) {
         Statement stm = getStatement();

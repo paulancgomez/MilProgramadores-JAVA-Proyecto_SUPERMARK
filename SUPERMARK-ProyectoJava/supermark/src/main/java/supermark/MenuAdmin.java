@@ -1,6 +1,8 @@
 package supermark;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class MenuAdmin {
@@ -12,37 +14,58 @@ public class MenuAdmin {
 	public MenuAdmin() throws SQLException{
 	
 		this.supermark = new Supermercado();
+		int opcion = 0;
 		
-		System.out.println("\tMENU ADMINISTRADOR");
-		System.out.println("1. VER LISTADO DE PRODUCTOS");
-		System.out.println("2. CARGAR PRODUCTOS A LA APLICACIÓN");
-		System.out.println("3. MODIFICAR LOS DATOS DE LOS PRODUCTOS CARGADOS");
-		System.out.println("4. VER TODOS LOS USUARIOS QUE REALIZARON UNA COMPRA");
-		System.out.println("5. VER LISTADO DE PRODUCTOS SELECCIONADOS POR EL USUARIO");
-		System.out.print("Elija: ");
+		do {
+			
+			System.out.println("\tMENU ADMINISTRADOR");
+			System.out.println("1. VER LISTADO DE PRODUCTOS");
+			System.out.println("2. CARGAR PRODUCTOS A LA APLICACIÓN");
+			System.out.println("3. MODIFICAR LOS DATOS DE LOS PRODUCTOS CARGADOS");
+			System.out.println("4. VER TODOS LOS USUARIOS QUE REALIZARON UNA COMPRA");
+			System.out.println("5. VER LISTADO DE PRODUCTOS SELECCIONADOS POR EL USUARIO");
+			System.out.println("0. SALIR.");
+			System.out.print("Elija: ");
+			
+			opcion = leer.nextInt();
+			
+			switch(opcion) {
+			
+				case 1:
+					supermark.verProductos();
+					break;
+				
+				case 2:
+					cargarProductoAdmin();
+					break;
+				
+				case 3:
+					modificarProductoAdmin();
+					break;
+				
+				case 4:
+					List<Cliente> listaClientes = new ArrayList<Cliente>();
+			    	listaClientes = supermark.getClientesCompras();
+			    	supermark.verClientes(listaClientes);
+					break;
+				
+				case 5:
+					verCarrito();
+					break;
+					
+				case 0:
+					break;
+					
+				default: 
+					System.out.println("Opcion incorrecta.");
+				    break;
+			}
+			
+		}while(opcion != 0);
 		
-		int opcion = leer.nextInt();
-		
-		switch(opcion) {
-		
-			case 1:
-				supermark.verProductos();
-				break;
-			case 2:
-				cargarProductoAdmin();
-				break;
-			case 3:
-				modificarProductoAdmin();
-				break;
-			case 4:
-				//verUsuariosCompra();
-				break;
-			case 5:
-				verCarrito();
-				break;
-		}
 	
 	}
+	
 	
     public void cargarProductoAdmin() throws SQLException{
 		
@@ -84,7 +107,10 @@ public class MenuAdmin {
     	
     	Carrito carrito = new Carrito();
     	
-    	supermark.verClientes();
+    	List<Cliente> listaClientes = new ArrayList<Cliente>();
+    	listaClientes = supermark.getClientes();
+    	
+    	supermark.verClientes(listaClientes);
 		
     	System.out.print("Ingrese el id del Cliente: ");
     	int idCliente = leer.nextInt();
@@ -94,5 +120,6 @@ public class MenuAdmin {
 		carrito.muestraCarrito();
 
     }
+    
 	
 }

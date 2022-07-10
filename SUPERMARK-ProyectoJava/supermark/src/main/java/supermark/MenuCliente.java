@@ -52,9 +52,12 @@ public class MenuCliente {
 				case 3:
 					this.autorizarCompraCarrito(cliente);
 					break;
+					
+				case 0:
+					break;
 				
 				default: 
-					System.out.println("Opcion incorrecta");
+					System.out.println("Opcion incorrecta.");
 				    break;
 			}
 		
