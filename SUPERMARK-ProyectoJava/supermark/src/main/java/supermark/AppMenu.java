@@ -7,11 +7,11 @@ public class AppMenu {
 	public static void main(String[] args) throws SQLException {
 		
 		//PRUEBA MENU CLIENTE
-		//Cliente cliente = new Cliente(1, 1, "pepe", "perez", "pepe@gmail.com"); 
-		//MenuCliente menuCliente = new MenuCliente(cliente);
+		Cliente cliente = new Cliente(1, "pepe", "perez", "pepe@gmail.com", 1); //(idUsuario, nombre, apellido, email, idCliente)
+		MenuCliente menuCliente = new MenuCliente(cliente);
 		
 		//PRUEBA MENU ADMIN
-		MenuAdmin menuAdmin = new MenuAdmin();
+		//MenuAdmin menuAdmin = new MenuAdmin();
 
 	}
 

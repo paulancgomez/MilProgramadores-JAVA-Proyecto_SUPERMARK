@@ -130,6 +130,23 @@ public class Supermercado {
 		}
 
 	}
+    
+    //DEVUELVE STOCK
+    public int getStock(int idProducto) throws SQLException {
+    	
+    	int cantStock = 0;
+    	Statement stm = this.getStatement();
+        
+    	ResultSet rs = stm.executeQuery("SELECT cantStock FROM Producto WHERE idProducto = " + idProducto + ";");
+        
+    	if(rs.next()) {
+    		cantStock = rs.getInt("cantStock");
+    	}
+        stm.close();
+
+		return cantStock;
+
+    }
 
     //DEVUELVE CARRITO
     public Carrito getCarrito(int idCliente){
