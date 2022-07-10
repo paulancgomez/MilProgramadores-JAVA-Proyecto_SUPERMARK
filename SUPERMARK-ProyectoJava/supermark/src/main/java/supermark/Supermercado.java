@@ -136,10 +136,11 @@ public class Supermercado {
         Carrito carrito = new Carrito();
         Statement stm = this.getStatement();
         try{
-        	String sql = "SELECT * FROM Producto WHERE idProducto IN (SELECT idProducto FROM CarritoxProducto WHERE idCarrito = (SELECT idCarrito FROM Carrito WHERE idCliente = " + idCliente + "));";
+        	//DEVUELVE CADA PRODUCTO SELECCIONADO CON LA CANTIDAD REQUERIDA POR idCliente
+        	String sql = "SELECT p.idProducto, p.descripcion, p.marca, p.categoria, cxp.cantidad, cxp.cantidad*p.precio FROM Producto p INNER JOIN CarritoxProducto cxp ON p.idProducto = cxp.idProducto INNER JOIN Carrito c ON cxp.idCarrito = c.idCarrito AND idCliente = " + idCliente + ";";
             ResultSet rs = stm.executeQuery(sql);
             while(rs.next()){
-                Producto unProducto = new Producto(rs.getInt("idProducto"), rs.getString("descripcion"), rs.getString("marca"), rs.getInt("cantStock"), rs.getDouble("precio"), rs.getString("categoria"));
+                Producto unProducto = new Producto(rs.getInt("idProducto"), rs.getString("descripcion"), rs.getString("marca"), rs.getString("categoria"), rs.getInt("cantidad"), rs.getDouble("cxp.cantidad*p.precio"));
                 carrito.agregaProducto(unProducto);
             }
             stm.close();

@@ -27,7 +27,7 @@ public class MenuCliente {
 		
 		System.out.println("\tMENU USUARIO");
 		System.out.println("1. SELECCIONAR PRODUCTOS.");
-		System.out.println("2. VER CARRITO."); //SELECT idUsuario
+		System.out.println("2. VER CARRITO.");
 		System.out.println("3. AUTORIZAR COMPRA DE CARRITO."); //UPDATE
 		System.out.print("Elija: ");
 		

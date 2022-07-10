@@ -9,6 +9,8 @@ public class Producto {
     private int cantStock;
     private Double precio;
     private String categoria;
+    private int cantidad; //Atributo util para MENU_CLIENTE
+    private double subtotal; //Atributo util para MENU_CLIENTE
 
     //CONSTRUCTOR
     public Producto(int id, String descripcion, String marca, int cantStock, Double precio, String categoria) {
@@ -27,6 +29,17 @@ public class Producto {
         this.precio = precio;
         this.categoria = categoria;
     }
+    
+    //CONSTRUCTOR UTIL PARA CLIENTE
+    public Producto(int id, String descripcion, String marca, String categoria, int cantidad, double subtotal) {
+        this.id = id;
+    	this.descripcion = descripcion;
+        this.marca = marca;
+        this.categoria = categoria;
+        this.cantidad = cantidad;
+        this.subtotal = subtotal;
+    }
+    
 
     //METODOS GET Y SET
     public int getId() {
@@ -88,5 +101,20 @@ public class Producto {
   		System.out.println("Precio: " + precio);
   		System.out.println("Categoria " + categoria);
   	}
+  	
+  	//MUESTRA PRODUCTO UTIL PARA CLIENTE
+    public void muestraProductoCliente() {
+    	System.out.println("****************************");
+  		System.out.println("\tPRODUCTO");
+  		System.out.println("Id: " + id);
+  		System.out.println("Descripcion: " + descripcion);
+  		System.out.println("Marca: " + marca);
+  		System.out.println("Categoria: " + categoria);
+  	
+  		System.out.println();
+  		
+  		System.out.println("CANTIDAD: " + cantidad);
+  		System.out.println("SUBTOTAL: " + subtotal);
+    }
 
 }

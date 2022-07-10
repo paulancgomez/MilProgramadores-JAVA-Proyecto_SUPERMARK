@@ -20,7 +20,7 @@ public class Carrito {
 	public void muestraCarrito() {
 		
 		for (int i = 0; i < this.listaProductos.size() ; i++) {		
-			listaProductos.get(i).muestraProducto();
+			listaProductos.get(i).muestraProductoCliente();
 			System.out.println();
 		}
 		
