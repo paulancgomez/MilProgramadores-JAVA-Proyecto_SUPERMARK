@@ -20,9 +20,26 @@ CREATE TABLE Usuario (
 	isAdmin BIT DEFAULT 0 -- 0 == false ; 1 == true
 );
 
+-- CREAR TABLA Domicilio
+CREATE TABLE Domicilio (
+	idDomicilio INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	calle VARCHAR(20),
+    numero INT
+);
+
 -- CREAR TABLA Cliente
 CREATE TABLE Cliente (
 	idCliente INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	idUsuario INT NOT NULL,
+    idDomicilio INT NOT NULL,
+	descuentoPorcentaje DOUBLE NOT NULL,
+	FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario),
+    FOREIGN KEY (idDomicilio) REFERENCES Domicilio(idDomicilio)
+);
+
+-- CREAR TABLA Administrador
+CREATE TABLE Administrador (
+	idAdmin INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	idUsuario INT NOT NULL,
 	FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario)
 );
