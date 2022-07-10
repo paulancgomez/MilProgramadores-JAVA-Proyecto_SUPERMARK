@@ -2,6 +2,7 @@ package supermark;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
@@ -21,36 +22,46 @@ public class MenuCliente {
 		
 		this.supermark = new Supermercado();
 		this.cliente = cliente;
+		int opcion = 0;
 		
 		System.out.println("Bienvendo/a " + cliente.getNombre());
 		
-		System.out.println("\tMENU USUARIO");
-		System.out.println("1. SELECCIONAR PRODUCTOS.");
-		System.out.println("2. VER CARRITO.");
-		System.out.println("3. AUTORIZAR COMPRA DE CARRITO."); //UPDATE
-		System.out.print("Elija: ");
+		do {
+			System.out.println("\tMENU USUARIO");
+			System.out.println("1. SELECCIONAR PRODUCTOS.");
+			System.out.println("2. VER CARRITO.");
+			System.out.println("3. AUTORIZAR COMPRA DE CARRITO."); //UPDATE
+			System.out.println("0. SALIR."); //UPDATE
+			System.out.print("Elija: ");
+			
+			opcion = leer.nextInt();
 		
-		int opcion = leer.nextInt();
+			switch(opcion) {
+				
+				case 1:
+					this.seleccionarProductos();
+					break;
+				
+				case 2:
+					System.out.println("\nSU CARRITO:");
+					Carrito carrito = new Carrito();
+					carrito = supermark.getCarrito(cliente.getIdCliente());
+					carrito.muestraCarrito();
+					break;
+				
+				case 3:
+					this.autorizarCompraCarrito(cliente);
+					break;
+				
+				default: 
+					System.out.println("Opcion incorrecta");
+				    break;
+			}
 		
-		switch(opcion) {
-			
-			case 1:
-				this.seleccionarProductos();
-				break;
-			
-			case 2:
-				System.out.println("\nSU CARRITO:");
-				Carrito carrito = new Carrito();
-				carrito = supermark.getCarrito(cliente.getIdCliente());
-				carrito.muestraCarrito();
-				break;
-			
-			case 3:
-				//this.autorizarCompraCarrito();
-				break;
-		}
+		} while(opcion != 0);
 	
 	}
+	
 	
 	//CONEXION
 	private Statement getStatement(){
@@ -115,6 +126,46 @@ public class MenuCliente {
 		
 		stm.close();
 	
+	}
+	
+	//AUTORIZAR LA COMPRA DE UN CARRITO
+	public void autorizarCompraCarrito(Cliente cliente) throws SQLException {
+		
+		Statement stm = getStatement();
+		String sql;
+		double total = 0;
+		double totalDescuento = 0;
+	    
+		System.out.println("Estas seguro/a de realizar esta compra? 1-SI 0-NO");
+		int respuesta = leer.nextInt();
+		
+		if(respuesta == 1) {
+			//CARGO COMPRA
+			sql = "INSERT INTO Compra(idCliente, idCarrito) VALUES (" + cliente.getIdCliente() + ", (SELECT idCarrito FROM Carrito WHERE idCliente = " + cliente.getIdCliente() + "));";
+			stm.executeUpdate(sql);
+			
+			Carrito carrito = new Carrito();
+			carrito = supermark.getCarrito(cliente.getIdCliente());
+			total = carrito.calcularTotalCarrito();
+			totalDescuento = total *  ((100.00 - cliente.getDescuentoPorcentaje()) / 100.00);
+			
+			//AL HACER LA COMPRA SE GENERA UNA FACTURA
+			String sql_idCompra = "SELECT idCompra FROM Compra WHERE idCliente = " + cliente.getIdCliente() + ";";
+			ResultSet rs = stm.executeQuery(sql_idCompra);
+			
+			int idCompra = 0;
+			if(rs.next()) {
+	    		idCompra = rs.getInt("idCompra");
+	    	}
+			
+			String sql2 = "INSERT INTO Factura (idCompra, total, totalDescuento) VALUES (" + rs.getInt("idCompra") + ", " + total + ", " + totalDescuento + ");"; 
+			stm.executeUpdate(sql2);
+			
+			System.out.println("COMPRA REALIZADA CON EXITO!");
+			
+			stm.close();
+		}
+			
 	}
 
 

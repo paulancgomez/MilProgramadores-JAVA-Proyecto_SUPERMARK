@@ -25,5 +25,17 @@ public class Carrito {
 		}
 		
 	}
+	
+	public double calcularTotalCarrito() {
+		
+		double total = 0;
+		
+		for (int i = 0; i < this.listaProductos.size() ; i++) {		
+			total = total + (listaProductos.get(i).getSubtotal());
+		}
+		
+		return total;
+		
+	}
 
 }

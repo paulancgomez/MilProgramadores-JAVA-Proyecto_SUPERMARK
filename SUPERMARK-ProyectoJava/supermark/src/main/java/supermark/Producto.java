@@ -7,13 +7,13 @@ public class Producto {
     private String descripcion; 
     private String marca;
     private int cantStock;
-    private Double precio;
+    private double precio;
     private String categoria;
     private int cantidad; //Atributo util para MENU_CLIENTE
     private double subtotal; //Atributo util para MENU_CLIENTE
 
-    //CONSTRUCTOR
-    public Producto(int id, String descripcion, String marca, int cantStock, Double precio, String categoria) {
+	//CONSTRUCTOR
+    public Producto(int id, String descripcion, String marca, int cantStock, double precio, String categoria) {
         this.id = id;
         this.descripcion = descripcion;
         this.marca = marca;
@@ -22,7 +22,7 @@ public class Producto {
         this.categoria = categoria;
     }
     
-    public Producto(String descripcion, String marca, int cantStock, Double precio, String categoria) {
+    public Producto(String descripcion, String marca, int cantStock, double precio, String categoria) {
         this.descripcion = descripcion;
         this.marca = marca;
         this.cantStock = cantStock;
@@ -31,13 +31,14 @@ public class Producto {
     }
     
     //CONSTRUCTOR UTIL PARA CLIENTE
-    public Producto(int id, String descripcion, String marca, String categoria, int cantidad, double subtotal) {
+    public Producto(int id, String descripcion, String marca, String categoria, double precio, int cantidad) {
         this.id = id;
     	this.descripcion = descripcion;
         this.marca = marca;
         this.categoria = categoria;
+        this.precio = precio;
         this.cantidad = cantidad;
-        this.subtotal = subtotal;
+        this.subtotal = precio * cantidad;
     }
     
 
@@ -74,11 +75,11 @@ public class Producto {
 		this.cantStock = cantStock;
 	}
     
-    public Double getPrecio() {
+    public double getPrecio() {
         return this.precio;
     }
 
-    public void setPrecio(Double precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
 
@@ -86,9 +87,26 @@ public class Producto {
         return this.categoria;
     }
 
-    public void setTipo(String categoria) {
+    public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
+    
+    public int getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
+	}
+
+	public double getSubtotal() {
+		return subtotal;
+	}
+
+	public void setSubtotal(double subtotal) {
+		this.subtotal = subtotal;
+	}
+
 
     //METODOS DE LA CLASE
   	public void muestraProducto() {
@@ -98,7 +116,7 @@ public class Producto {
   		System.out.println("Descripcion: " + descripcion);
   		System.out.println("Marca: " + marca);
   		System.out.println("Stock: " + cantStock);
-  		System.out.println("Precio: " + precio);
+  		System.out.println("Precio: $" + precio);
   		System.out.println("Categoria " + categoria);
   	}
   	
@@ -110,11 +128,12 @@ public class Producto {
   		System.out.println("Descripcion: " + descripcion);
   		System.out.println("Marca: " + marca);
   		System.out.println("Categoria: " + categoria);
-  	
+  		System.out.println("Precio: $" + precio);
+  		
   		System.out.println();
   		
   		System.out.println("CANTIDAD: " + cantidad);
-  		System.out.println("SUBTOTAL: " + subtotal);
+  		System.out.println("SUBTOTAL: $" + subtotal);
     }
 
 }

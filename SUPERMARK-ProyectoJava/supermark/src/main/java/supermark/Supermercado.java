@@ -154,10 +154,10 @@ public class Supermercado {
         Statement stm = this.getStatement();
         try{
         	//DEVUELVE CADA PRODUCTO SELECCIONADO CON LA CANTIDAD REQUERIDA POR idCliente
-        	String sql = "SELECT p.idProducto, p.descripcion, p.marca, p.categoria, cxp.cantidad, cxp.cantidad*p.precio FROM Producto p INNER JOIN CarritoxProducto cxp ON p.idProducto = cxp.idProducto INNER JOIN Carrito c ON cxp.idCarrito = c.idCarrito AND idCliente = " + idCliente + ";";
+        	String sql = "SELECT p.idProducto, p.descripcion, p.marca, p.categoria, p.precio, cxp.cantidad, cxp.cantidad*p.precio FROM Producto p INNER JOIN CarritoxProducto cxp ON p.idProducto = cxp.idProducto INNER JOIN Carrito c ON cxp.idCarrito = c.idCarrito AND idCliente = " + idCliente + ";";
             ResultSet rs = stm.executeQuery(sql);
             while(rs.next()){
-                Producto unProducto = new Producto(rs.getInt("idProducto"), rs.getString("descripcion"), rs.getString("marca"), rs.getString("categoria"), rs.getInt("cantidad"), rs.getDouble("cxp.cantidad*p.precio"));
+                Producto unProducto = new Producto(rs.getInt("idProducto"), rs.getString("descripcion"), rs.getString("marca"), rs.getString("categoria"), rs.getDouble("precio"), rs.getInt("cantidad"));
                 carrito.agregaProducto(unProducto);
             }
             stm.close();
@@ -199,6 +199,9 @@ public class Supermercado {
     		System.out.println();
     	}
 	}
+	
+	//DEVUELVE LISTA DE COMPRAS
+	
     
     public Boolean isAdmin(Usuario usuario) {
         Statement stm = getStatement();
