@@ -6,10 +6,10 @@ public class Cliente extends Usuario {
 
 	//ATRIBUTOS
 	private int idCliente;
-	private Domicilio idDomicilio;
-	private double descuentoPorcentaje;
+	private Domicilio domicilio;
+	private int descuentoPorcentaje;
 	private Carrito carrito;
-	private ArrayList<Compra> listaCompra;
+	private ArrayList<Compra> listaCompras;
 
 	//CONSTRUCTORES
     public Cliente(String nombre, String apellido, String email) {
@@ -25,12 +25,12 @@ public class Cliente extends Usuario {
         this.idCliente = idCliente;
     }
 
-    public Cliente(int id, String nombre, String apellido, String correo, Domicilio idDomicilio) {
+    public Cliente(int id, String nombre, String apellido, String correo, Domicilio domicilio) {
 		super(id, nombre, apellido, correo);
-		this.idDomicilio = idDomicilio;
+		this.domicilio = domicilio;
 		this.descuentoPorcentaje = 10;
 		this.carrito = new Carrito();
-		this.listaCompra = new ArrayList<Compra> ();	
+		this.listaCompras = new ArrayList<Compra> ();	
 	}
     
     //METODOS GET Y SET
@@ -43,18 +43,18 @@ public class Cliente extends Usuario {
 	}
 
 	public Domicilio getIdDomicilio() {
-		return idDomicilio;
+		return domicilio;
 	}
 
-	public void setDomicilio(Domicilio idDomicilio) {
-		this.idDomicilio = idDomicilio;
+	public void setDomicilio(Domicilio domicilio) {
+		this.domicilio = domicilio;
 	}
 	
-	public double getDescuentoPorcentaje() {
+	public int getDescuentoPorcentaje() {
 		return descuentoPorcentaje;
 	}
 
-	public void setDescuentoPorcentaje(double descuentoPorcentaje) {
+	public void setDescuentoPorcentaje(int descuentoPorcentaje) {
 		this.descuentoPorcentaje = descuentoPorcentaje;
 	}
 
@@ -66,11 +66,11 @@ public class Cliente extends Usuario {
 	}
 	
 	public ArrayList<Compra> getListaCompra() {
-		return listaCompra;
+		return listaCompras;
 	}
 
-	public void setListaCompra(ArrayList<Compra> listaCompra) {
-		this.listaCompra = listaCompra;
+	public void setListaCompra(ArrayList<Compra> listaCompras) {
+		this.listaCompras = listaCompras;
 	}
     
     //METODOS DE LA CLASE

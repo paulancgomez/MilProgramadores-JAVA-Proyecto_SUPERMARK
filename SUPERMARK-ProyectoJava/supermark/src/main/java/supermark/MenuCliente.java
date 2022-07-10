@@ -150,7 +150,7 @@ public class MenuCliente {
 			Carrito carrito = new Carrito();
 			carrito = supermark.getCarrito(cliente.getIdCliente());
 			total = carrito.calcularTotalCarrito();
-			totalDescuento = total *  ((100.00 - cliente.getDescuentoPorcentaje()) / 100.00);
+			totalDescuento = total *  ((100 - cliente.getDescuentoPorcentaje()) / 100);
 			
 			//AL HACER LA COMPRA SE GENERA UNA FACTURA
 			String sql_idCompra = "SELECT idCompra FROM Compra WHERE idCliente = " + cliente.getIdCliente() + ";";

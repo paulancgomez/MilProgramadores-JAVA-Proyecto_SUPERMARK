@@ -45,7 +45,7 @@ public class MenuAdmin {
 				
 				case 4:
 					List<Cliente> listaClientes = new ArrayList<Cliente>();
-			    	listaClientes = supermark.getClientesCompras();
+			    	listaClientes = supermark.getClientesQueCompraron();
 			    	supermark.verClientes(listaClientes);
 					break;
 				

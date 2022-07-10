@@ -187,7 +187,7 @@ public class Supermercado {
     }
     
     //DEVUELVE LISTA DE CLIENTES QUE HICIERON AL MENOS UNA COMPRA
-    public List<Cliente> getClientesCompras(){
+    public List<Cliente> getClientesQueCompraron(){
         List<Cliente> listaClientes = new ArrayList<Cliente>();
         Statement stm = this.getStatement();
         try{
@@ -217,30 +217,6 @@ public class Supermercado {
 	    }
 	}
 	
-	//DEVUELVE LISTA DE COMPRAS
-	public List<Cliente> clienteCompra() {
-		
-		 List<Cliente> listaClientes = new ArrayList<Cliente>();
-	     Statement stm = this.getStatement();
-	     int cantCompras = 0;
-	     
-	     try{
-	    	 String sql = "SELECT Usuario.idUsuario, Usuario.nombre, Usuario.apellido, Usuario.email, Cliente.idCliente FROM Compra INNER JOIN Cliente ON Compra.idCliente = Cliente.idCliente INNER JOIN Usuario ON Cliente.idUsuario = Usuario.idUsuario GROUP BY Compra.idCliente HAVING COUNT(*) > 0;";
-	    	 ResultSet rs = stm.executeQuery(sql);
-	     	 
-	    	 while(rs.next()){
-		         Cliente unCliente = new Cliente(rs.getInt("idUsuario"), rs.getString("nombre"), rs.getString("apellido"), rs.getString("email"),  rs.getInt("idCliente"));
-		         listaClientes.add(unCliente);
-	         }
-	     
-	    	 stm.close();
-	     return listaClientes;
-	      
-	     }catch(SQLException e){
-	    	 System.out.println(e.getLocalizedMessage());
-	     }
-	     return listaClientes;
-	}
     
     public Boolean isAdmin(Usuario usuario) {
         Statement stm = getStatement();
