@@ -1,6 +1,5 @@
 package supermark;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,18 +8,12 @@ import java.util.Scanner;
 public class MenuAdmin {
 
 	Scanner leer = new Scanner(System.in);
-	//Conexion conn=new Conexion();
-	private String[][] matrizResultado;
-	int fila;
-	int columna;
 	
 	private Supermercado supermark;
-	private Usuario usuario;
 	
-	public MenuAdmin(Usuario usuario) throws SQLException{
+	public MenuAdmin() throws SQLException{
 	
 		this.supermark = new Supermercado();
-		this.usuario = usuario; 
 		
 		System.out.println("\tMENU ADMINISTRADOR");
 		System.out.println("1. VER LISTADO DE PRODUCTOS");
