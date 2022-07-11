@@ -2,7 +2,7 @@ package supermark;
 
 import java.sql.SQLException;
 
-public class AppMenu {
+public class TestMenu {
 
 	public static void main(String[] args) throws SQLException {
 		

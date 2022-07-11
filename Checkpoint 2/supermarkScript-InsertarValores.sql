@@ -1,6 +1,7 @@
 use supermark;
 
 -- PROGRAMA PROBADO CON LOS SIGUIENTES VALORES (FALTO HACER MAS CASOS DE PRUEBA)
+-- FALTA TABLA CATEGORIA
 
 -- INSERTO VALORES A LA TABLA Producto
 INSERT INTO Producto (descripcion, marca, cantStock, precio, categoria)

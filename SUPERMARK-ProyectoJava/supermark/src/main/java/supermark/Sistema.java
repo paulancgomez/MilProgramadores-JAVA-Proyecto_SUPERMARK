@@ -68,6 +68,15 @@ public class Sistema {
 
         return null;
     }
+    
+    /*
+    public Cliente cargarDatosCliente(Usuario usuario) {
+
+    	Cliente cliente = new Cliente(usuario.getIdUsuario(), usuario.getNombre(), usuario.getEmail());
+    	
+    	return cliente;
+    }
+    */
 
 
 }
