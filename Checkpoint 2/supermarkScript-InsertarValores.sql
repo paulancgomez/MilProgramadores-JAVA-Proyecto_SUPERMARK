@@ -50,3 +50,9 @@ VALUES
 -- VALUES
 -- (1)
 -- ;
+
+-- CONSULTAS
+SELECT * FROM Usuario;
+SELECT * FROM Cliente;
+SELECT * FROM Carrito;
+SELECT * FROM Producto;
